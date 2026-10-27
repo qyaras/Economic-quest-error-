@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Economic Quest: The Wealth Journey</title>
+  <meta name="description" content="Media pembelajaran interaktif Ekonomi: Jelajahi Dunia Ekonomi, Kuasai Materi, dan Taklukkan Setiap Tantangan!">
+  <meta name="theme-color" content="#060d18">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23ffb703' stroke='%23b87900' stroke-width='6'/%3E%3Ctext x='50' y='68' font-size='54' font-weight='bold' text-anchor='middle' fill='%237a4f00'%3E$%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="bg-floaters" aria-hidden="true"></div>
+
+  <!-- Tombol suara global -->
+  <button id="btnMute" class="icon-btn mute" aria-label="Mute / Unmute musik" title="Suara"><span>🔊</span></button>
+
+  <!-- ===================== SPLASH ===================== -->
+  <section id="screen-splash" class="screen active">
+    <div class="splash">
+      <div class="coin-logo"><span>$</span></div>
+      <h1 class="title">Economic <em>Quest</em><small>The Wealth Journey</small></h1>
+      <p class="tagline">Jelajahi Dunia Ekonomi, Kuasai Materi, dan Taklukkan Setiap Tantangan!</p>
+      <div class="name-card">
+        <label for="inpName">Siapa kamu, Petualang?</label>
+        <input id="inpName" type="text" maxlength="16" placeholder="Tulis namamu…" autocomplete="off">
+        <button id="btnStart" class="btn big">▶ Mulai Petualangan</button>
+      </div>
+      <canvas id="splashChar" width="160" height="170" aria-hidden="true"></canvas>
+    </div>
+  </section>
+
+  <!-- ===================== DASHBOARD ===================== -->
+  <section id="screen-dashboard" class="screen">
+    <header class="topbar">
+      <div class="hello">Halo, <b id="helloName">Petualang</b>! 👋</div>
+      <div class="wallet" title="Poin yang bisa dibelanjakan di Toko Skin">🪙 <b id="walletDash">0</b> poin</div>
+    </header>
+    <div class="dash-title">
+      <h1 class="title sm">Economic <em>Quest</em><small>The Wealth Journey</small></h1>
+      <p class="tagline">Jelajahi Dunia Ekonomi, Kuasai Materi, dan Taklukkan Setiap Tantangan!</p>
+    </div>
+    <div class="menu-grid">
+      <button class="menu-card m1" data-go="petunjuk"><span class="m-ico">📜</span><b>PETUNJUK</b><small>Aturan main, poin, nyawa &amp; navigasi</small></button>
+      <button class="menu-card m2" data-go="materi"><span class="m-ico">📚</span><b>MATERI</b><small>Ringkasan Bab 1 + 4 sub-bab</small><i class="badge" id="badgeMateri"></i></button>
+      <button class="menu-card m3" data-go="game"><span class="m-ico">🎮</span><b>GAME</b><small>Petualangan platformer + toko skin</small></button>
+      <button class="menu-card m4" data-go="evaluasi"><span class="m-ico">🏆</span><b>EVALUASI</b><small>Nilai, feedback &amp; penguatan materi</small></button>
+    </div>
+    <footer class="foot">Economic Quest · Media Pembelajaran Interaktif Ekonomi</footer>
+  </section>
+
+  <!-- ===================== PETUNJUK ===================== -->
+  <section id="screen-petunjuk" class="screen">
+    <header class="page-head"><button class="back" data-go="dashboard">← Menu</button><h2>📜 Petunjuk</h2></header>
+    <div class="page-body">
+      <div class="panel">
+        <h3>🎯 Tujuan Permainan</h3>
+        <p>Jelajahi dunia dengan karaktermu, kumpulkan koin, hindari rintangan, dan jawab <b>10 Mini Quiz</b> dari materi Ekonomi Bab 1. Capai garis <b>FINISH</b> dengan nyawa yang masih tersisa!</p>
+      </div>
+      <div class="grid-help">
+        <div class="panel">
+          <h3>🕹️ Kontrol</h3>
+          <ul class="keys">
+            <li><span class="kc">←</span><span class="kc">→</span> Bergerak kiri / kanan</li>
+            <li><span class="kc">↑</span> atau <span class="kc wide">Spasi</span> Melompat <small>(tahan = lebih tinggi)</small></li>
+            <li><span class="kc">Esc</span> atau <span class="kc">P</span> Jeda</li>
+            <li><span class="kc">1</span>–<span class="kc">4</span> atau <span class="kc">A</span>–<span class="kc">D</span> Menjawab kuis</li>
+            <li>📱 Di HP/tablet gunakan tombol layar ◀ ▶ ▲</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3>❤️ Sistem Nyawa</h3>
+          <p>Kamu mulai dengan <b>3 nyawa (♥)</b>. Nyawa berkurang 1 jika:</p>
+          <ul class="dots">
+            <li>Menabrak rintangan (<b>Tagihan, Utang, Inflasi</b>)</li>
+            <li>Salah menjawab kuis, atau waktu <b>15 detik</b> habis</li>
+          </ul>
+          <p>Nyawa habis = <b>Game Over</b>.</p>
+        </div>
+        <div class="panel">
+          <h3>⭐ Sistem Poin</h3>
+          <ul class="dots">
+            <li>🪙 Koin / kantong uang: <b>+1 poin</b></li>
+            <li>✅ Jawaban Mini Quiz benar: <b>+10 poin</b></li>
+          </ul>
+          <p>Poin tersimpan sebagai saldo untuk membeli skin di <b>Toko Skin</b>.</p>
+        </div>
+        <div class="panel">
+          <h3>❓ Mini Quiz</h3>
+          <p>Gerbang <b>KUIS ?</b> muncul 10 kali di sepanjang jalan. Setiap soal pilihan ganda (A–D) punya <b>timer 15 detik</b>. Soal diacak dari bank soal, jadi setiap main berbeda!</p>
+        </div>
+        <div class="panel">
+          <h3>🛍️ Toko Skin</h3>
+          <ul class="dots">
+            <li>Student Uniform · <b>Gratis</b></li>
+            <li>Executive Wear · <b>50 poin</b></li>
+            <li>Golden Economy Armor · <b>150 poin</b></li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3>🧭 Navigasi</h3>
+          <ul class="dots">
+            <li><b>Materi</b>: baca dulu sebelum bermain</li>
+            <li><b>Game</b>: mulai petualangan &amp; beli skin</li>
+            <li><b>Evaluasi</b>: lihat nilai &amp; sub-bab yang perlu diulang</li>
+          </ul>
+          <p class="tip">💡 Tip: belajar dulu di Materi → skor kuis jauh lebih tinggi!</p>
+        </div>
+      </div>
+      <div class="center"><button class="btn big" data-go="game">🎮 Siap Main!</button></div>
+    </div>
+  </section>
+
+  <!-- ===================== MATERI ===================== -->
+  <section id="screen-materi" class="screen">
+    <header class="page-head"><button class="back" data-go="dashboard">← Menu</button><h2>📚 Materi</h2></header>
+    <div class="materi-wrap">
+      <nav id="materiTabs" class="m-tabs" aria-label="Sub-bab"></nav>
+      <article id="materiBody" class="m-body"></article>
+    </div>
+  </section>
+
+  <!-- ===================== GAME LOBBY & TOKO ===================== -->
+  <section id="screen-game" class="screen">
+    <header class="page-head"><button class="back" data-go="dashboard">← Menu</button><h2>🎮 Game</h2><div class="wallet right">🪙 <b id="walletGame">0</b></div></header>
+    <div class="page-body">
+      <div class="lobby panel">
+        <div class="lobby-char"><canvas id="lobbyChar" width="200" height="200"></canvas></div>
+        <div class="lobby-info">
+          <h3>Petualangan Siap Dimulai!</h3>
+          <p>Lari, lompat, kumpulkan koin &amp; taklukkan <b>10 Mini Quiz</b>. Skin aktif: <b id="activeSkinName">–</b></p>
+          <button id="btnPlay" class="btn big">▶ Mulai Main</button>
+          <p class="mini-note" id="bestNote"></p>
+        </div>
+      </div>
+      <h3 class="shop-title">🛍️ Toko Skin</h3>
+      <div id="shop" class="shop"></div>
+    </div>
+  </section>
+
+  <!-- ===================== PLAY ===================== -->
+  <section id="screen-play" class="screen">
+    <div class="play-wrap" id="playWrap">
+      <div class="hud">
+        <button id="btnPause" class="icon-btn" aria-label="Jeda">⏸</button>
+        <div class="hearts" id="hudHearts"></div>
+        <div class="hud-right">
+          <div class="pill" title="Kuis terjawab">❓ <b id="hudQuiz">0/10</b></div>
+          <div class="pill" title="Total poin">⭐ <b id="hudPts">0</b></div>
+          <div class="pill" title="Koin">🪙 <b id="hudCoins">0</b></div>
+        </div>
+      </div>
+      <canvas id="gameCanvas"></canvas>
+
+      <div class="touch-ctl" id="touchCtl">
+        <div class="lr"><button class="tbtn" data-ctl="left" aria-label="Kiri">◀</button><button class="tbtn" data-ctl="right" aria-label="Kanan">▶</button></div>
+        <button class="tbtn jump" data-ctl="jump" aria-label="Lompat">▲</button>
+      </div>
+
+      <div id="quiz" class="quiz hidden">
+        <div class="quiz-card">
+          <div class="quiz-top"><span class="quiz-badge" id="quizNo">Kuis 1/10</span><span class="quiz-sub" id="quizSub"></span><span class="quiz-time">⏱ <b id="quizTime">15</b></span></div>
+          <div class="timebar"><i id="timeFill"></i></div>
+          <h3 id="quizQ"></h3>
+          <div class="opts" id="quizOpts"></div>
+          <div class="quiz-fb" id="quizFb"></div>
+        </div>
+      </div>
+
+      <div id="pauseMenu" class="overlay hidden">
+        <div class="pause-card"><h2>⏸ Jeda</h2><button id="btnResume" class="btn">▶ Lanjutkan</button><button id="btnQuit" class="btn ghost">🚪 Keluar</button></div>
+      </div>
+      <div id="banner" class="banner"></div>
+    </div>
+  </section>
+
+  <!-- ===================== EVALUASI ===================== -->
+  <section id="screen-evaluasi" class="screen">
+    <header class="page-head"><button class="back" data-go="dashboard">← Menu</button><h2>🏆 Evaluasi</h2></header>
+    <div class="page-body" id="evalBody"></div>
+  </section>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/character.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
